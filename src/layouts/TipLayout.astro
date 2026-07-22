@@ -142,6 +142,32 @@ const total = tips.length;
       @media (prefers-reduced-motion: reduce) {
         .eyebrow, h1, article, nav { animation: none; }
       }
+
+      /* Swipe-style directional page transitions. */
+      @keyframes slide-out-left { to { transform: translateX(-40px); opacity: 0; } }
+      @keyframes slide-in-right { from { transform: translateX(40px); opacity: 0; } }
+      @keyframes slide-out-right { to { transform: translateX(40px); opacity: 0; } }
+      @keyframes slide-in-left { from { transform: translateX(-40px); opacity: 0; } }
+
+      /* Going to the NEXT tip: current slides left, new enters from the right. */
+      [data-dir="next"]::view-transition-old(root) {
+        animation: slide-out-left 0.28s ease both;
+      }
+      [data-dir="next"]::view-transition-new(root) {
+        animation: slide-in-right 0.28s ease both;
+      }
+      /* Going to the PREVIOUS tip: current slides right, new enters from the left. */
+      [data-dir="prev"]::view-transition-old(root) {
+        animation: slide-out-right 0.28s ease both;
+      }
+      [data-dir="prev"]::view-transition-new(root) {
+        animation: slide-in-left 0.28s ease both;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) { animation: none; }
+      }
     </style>
   </head>
   <body>
@@ -174,6 +200,26 @@ const total = tips.length;
         )}
       </nav>
     </main>
+
+    <script is:inline>
+      // Set the swipe direction before an Astro view transition starts so the
+      // page slides left/right to match the prev/next intent. Delegated on
+      // `document`, which persists across transitions (the body is swapped).
+      if (!window.__navDirBound) {
+        window.__navDirBound = true;
+        document.addEventListener('click', (e) => {
+          const card = e.target.closest('.navcard');
+          if (!card || card.classList.contains('placeholder')) return;
+          document.documentElement.dataset.dir = card.classList.contains('next')
+            ? 'next'
+            : 'prev';
+        });
+        // Keyboard/history navigation has no clear left-right intent; clear it.
+        document.addEventListener('astro:before-preparation', (e) => {
+          if (e.navigationType === 'traverse') delete document.documentElement.dataset.dir;
+        });
+      }
+    </script>
   </body>
 </html>
 
