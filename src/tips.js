@@ -1,5 +1,9 @@
 import { marked } from 'marked';
 
+// Tips are authored as plain text (for SportsYou pasting), so single newlines
+// should render as line breaks rather than being collapsed into one paragraph.
+marked.setOptions({ breaks: true });
+
 // Eagerly read every weekly tip markdown file as raw text.
 const rawFiles = import.meta.glob('../weekly tips/*.md', {
   query: '?raw',
