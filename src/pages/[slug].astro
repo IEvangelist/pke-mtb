@@ -1,0 +1,16 @@
+---
+import TipLayout from '../layouts/TipLayout.astro';
+import { getTips } from '../tips.js';
+
+export function getStaticPaths() {
+  const tips = getTips();
+  return tips.map((tip) => ({
+    params: { slug: tip.slug },
+    props: { tips, current: tip },
+  }));
+}
+
+const { tips, current } = Astro.props;
+---
+
+<TipLayout title={current.title} tips={tips} current={current} />

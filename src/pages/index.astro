@@ -1,0 +1,21 @@
+---
+import { getTips } from '../tips.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const first = getTips()[0];
+const target = `${base}/${first.slug}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <a href={target}>Continue to the first tip</a>
+  </body>
+</html>
