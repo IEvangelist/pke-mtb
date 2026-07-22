@@ -66,6 +66,28 @@ const total = tips.length;
         border-radius: 999px;
         margin-bottom: 1rem;
       }
+      .eyebrow .bike { margin-right: 0.35rem; }
+
+      /* Subtle "trail" progress bar with a tire-track dashed fill. */
+      .trail {
+        position: relative;
+        height: 6px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--muted) 22%, transparent);
+        margin: 0 0 1.75rem;
+        overflow: hidden;
+      }
+      .trail-fill {
+        height: 100%;
+        border-radius: 999px;
+        background-color: var(--accent);
+        background-image: repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.45) 0 4px,
+          transparent 4px 8px
+        );
+        transition: width 0.4s ease;
+      }
       h1 {
         font-size: clamp(1.7rem, 5vw, 2.35rem);
         line-height: 1.2;
@@ -183,7 +205,10 @@ const total = tips.length;
   </head>
   <body>
     <main>
-      <span class="eyebrow">Tip {idx + 1} of {total}</span>
+      <span class="eyebrow"><span class="bike">🚵</span>Tip {idx + 1} of {total}</span>
+      <div class="trail" role="presentation">
+        <div class="trail-fill" style={`width: ${((idx + 1) / total) * 100}%`}></div>
+      </div>
       <h1>{current.title}</h1>
       <article set:html={current.bodyHtml} />
       <nav>
