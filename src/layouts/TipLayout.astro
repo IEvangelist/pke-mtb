@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 const { title, tips, current } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const idx = tips.findIndex((t) => t.slug === current.slug);
@@ -15,6 +17,7 @@ const total = tips.length;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>{title}</title>
+    <ViewTransitions />
     <style>
       :root {
         color-scheme: light dark;
@@ -124,6 +127,20 @@ const total = tips.length;
 
       @media (max-width: 30rem) {
         .label { font-size: 0.92rem; }
+      }
+
+      /* Entrance animation for the article content. */
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: none; }
+      }
+      .eyebrow { animation: rise 0.45s ease both; }
+      h1 { animation: rise 0.45s ease 0.05s both; }
+      article { animation: rise 0.5s ease 0.1s both; }
+      nav { animation: rise 0.5s ease 0.16s both; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .eyebrow, h1, article, nav { animation: none; }
       }
     </style>
   </head>
