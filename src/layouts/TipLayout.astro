@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import SiteFooter from '../components/SiteFooter.astro';
 
 const { title, tips, current } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -60,7 +61,7 @@ const progress = ((idx + 1) / total) * 100;
         color: var(--text);
         -webkit-font-smoothing: antialiased;
       }
-      main { max-width: 42rem; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3.5rem) 1.25rem 4rem; }
+      main { max-width: 42rem; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3.5rem) 1.25rem 0; }
 
       .tip-header {
         display: flex;
@@ -292,6 +293,7 @@ const progress = ((idx + 1) / total) * 100;
         )}
       </nav>
     </main>
+    <SiteFooter />
 
     <script is:inline>
       // Set the swipe direction before an Astro view transition starts so the
