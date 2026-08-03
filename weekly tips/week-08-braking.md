@@ -1,4 +1,4 @@
-# Week 8 — Braking
+# Tip 8 — Braking
 
 - Suggested post date: Monday, August 24, 2026
 - Ties to: Regular practices

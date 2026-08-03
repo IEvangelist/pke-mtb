@@ -1,4 +1,4 @@
-# Week 14 — Pre-Ride the Course
+# Tip 14 — Pre-Ride the Course
 
 - Suggested post date: Monday, October 5, 2026
 - Ties to: Regular practices

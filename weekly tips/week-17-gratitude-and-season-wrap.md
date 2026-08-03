@@ -1,4 +1,4 @@
-# Week 17 — Gratitude & Season Wrap
+# Tip 17 — Gratitude & Season Wrap
 
 - Suggested post date: Monday, October 26, 2026
 - Ties to: Practice & End-of-Season Party (Tue, Oct 27)

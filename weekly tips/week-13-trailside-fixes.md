@@ -1,4 +1,4 @@
-# Week 13 — Trailside Fixes
+# Tip 13 — Trailside Fixes
 
 - Suggested post date: Monday, September 28, 2026
 - Ties to: Regular practices

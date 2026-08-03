@@ -1,4 +1,4 @@
-# Week 2 — Bike Check & Fit
+# Tip 2 — Bike Check & Fit
 
 - Suggested post date: Monday, July 13, 2026
 - Ties to: Special Practice @ Bicycle Doctor (Thu, July 16)

@@ -1,4 +1,4 @@
-# Week 3 — Ready Position
+# Tip 3 — Ready Position
 
 - Suggested post date: Monday, July 20, 2026
 - Ties to: Regular practices

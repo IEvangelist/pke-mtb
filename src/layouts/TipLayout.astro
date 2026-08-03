@@ -3,11 +3,15 @@ import { ViewTransitions } from 'astro:transitions';
 
 const { title, tips, current } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const idx = tips.findIndex((t) => t.slug === current.slug);
+const idx = tips.findIndex((tip: { slug: string }) => tip.slug === current.slug);
 const prev = idx > 0 ? tips[idx - 1] : null;
 const next = idx < tips.length - 1 ? tips[idx + 1] : null;
-const href = (slug) => `${base}/${slug}`;
+const href = (slug: string) => `${base}/${slug}`;
+const navTitle = (title: string) => title
+  .replace(/^Tip\s+\d+\s+[—-]\s+/, '')
+  .replace(/\s*\(.+\)$/, '');
 const total = tips.length;
+const progress = ((idx + 1) / total) * 100;
 ---
 
 <!doctype html>
@@ -16,6 +20,7 @@ const total = tips.length;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <title>{title}</title>
     <ViewTransitions />
     <style>
@@ -26,8 +31,8 @@ const total = tips.length;
         --text: #1a1a1f;
         --muted: #6b7280;
         --border: #e6e6ec;
-        --accent: #2f7d4f;
-        --accent-soft: #e8f4ec;
+        --accent: #c9151d;
+        --accent-soft: #fdebed;
         --radius: 16px;
         --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
       }
@@ -38,10 +43,13 @@ const total = tips.length;
           --text: #ececf1;
           --muted: #9aa1ad;
           --border: #262931;
-          --accent: #5cc98a;
-          --accent-soft: #17251d;
+          --accent: #ff6268;
+          --accent-soft: #32171a;
           --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
         }
+      }
+      @media (min-width: 48rem) {
+        html { font-size: 125%; }
       }
       * { box-sizing: border-box; }
       body {
@@ -54,6 +62,27 @@ const total = tips.length;
       }
       main { max-width: 42rem; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3.5rem) 1.25rem 4rem; }
 
+      .tip-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .all-tips {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .all-tips:hover { color: var(--accent); }
+      .all-tips:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
       .eyebrow {
         display: inline-block;
         font-size: 0.78rem;
@@ -64,9 +93,9 @@ const total = tips.length;
         background: var(--accent-soft);
         padding: 0.3rem 0.7rem;
         border-radius: 999px;
-        margin-bottom: 1rem;
+        margin: 0;
+        white-space: nowrap;
       }
-      .eyebrow .bike { margin-right: 0.35rem; }
 
       /* Subtle "trail" progress bar with a tire-track dashed fill. */
       .trail {
@@ -74,8 +103,7 @@ const total = tips.length;
         height: 6px;
         border-radius: 999px;
         background: color-mix(in srgb, var(--muted) 22%, transparent);
-        margin: 0 0 1.75rem;
-        overflow: hidden;
+        margin: 0.45rem 0 1.75rem;
       }
       .trail-fill {
         height: 100%;
@@ -87,6 +115,22 @@ const total = tips.length;
           transparent 4px 8px
         );
         transition: width 0.4s ease;
+        view-transition-name: trail-progress;
+      }
+      .trail-marker {
+        position: absolute;
+        left: clamp(0.7rem, var(--progress), calc(100% - 0.7rem));
+        top: 50%;
+        transform: translate(-50%, -55%);
+        transition: left 0.4s ease;
+        view-transition-name: trail-rider;
+      }
+      .trail-rider {
+        display: block;
+        font-size: 1.5rem;
+        line-height: 1;
+        transform: scaleX(-1);
+        filter: drop-shadow(0 2px 1px color-mix(in srgb, var(--bg) 85%, transparent));
       }
       h1 {
         font-size: clamp(1.7rem, 5vw, 2.35rem);
@@ -149,17 +193,16 @@ const total = tips.length;
         font-weight: 600;
         font-size: 1rem;
         line-height: 1.3;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+        display: block;
         overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       @media (max-width: 34rem) {
         nav { grid-template-columns: 1fr; }
         .navcard.next { text-align: left; align-items: flex-start; }
         .navcard.next .dir { flex-direction: row; }
-        .label { -webkit-line-clamp: 1; }
       }
 
       /* Entrance animation for the article content. */
@@ -174,6 +217,7 @@ const total = tips.length;
 
       @media (prefers-reduced-motion: reduce) {
         .eyebrow, h1, article, nav { animation: none; }
+        .trail-fill, .trail-marker { transition: none; }
       }
 
       /* Swipe-style directional page transitions. */
@@ -197,17 +241,29 @@ const total = tips.length;
         animation: slide-in-left 0.28s ease both;
       }
 
+      ::view-transition-group(trail-progress),
+      ::view-transition-group(trail-rider) {
+        animation-duration: 0.65s;
+        animation-timing-function: cubic-bezier(0.22, 0.8, 0.25, 1);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         ::view-transition-old(root),
-        ::view-transition-new(root) { animation: none; }
+        ::view-transition-new(root),
+        ::view-transition-group(trail-progress),
+        ::view-transition-group(trail-rider) { animation: none; }
       }
     </style>
   </head>
   <body>
     <main>
-      <span class="eyebrow"><span class="bike">🚵</span>Tip {idx + 1} of {total}</span>
-      <div class="trail" role="presentation">
-        <div class="trail-fill" style={`width: ${((idx + 1) / total) * 100}%`}></div>
+      <div class="tip-header">
+        <a class="all-tips" href={`${base}/`} aria-label="View all tips">← All tips</a>
+        <span class="eyebrow">Tip {idx + 1} of {total}</span>
+      </div>
+      <div class="trail" style={`--progress: ${progress}%`} role="presentation">
+        <div class="trail-fill" style={`width: ${progress}%`}></div>
+        <span class="trail-marker"><span class="trail-rider">🚵</span></span>
       </div>
       <h1>{current.title}</h1>
       <article set:html={current.bodyHtml} />
@@ -215,7 +271,7 @@ const total = tips.length;
         {prev ? (
           <a class="navcard prev" href={href(prev.slug)}>
             <span class="dir">← Previous</span>
-            <span class="label">{prev.title}</span>
+            <span class="label">{navTitle(prev.title)}</span>
           </a>
         ) : (
           <span class="navcard prev placeholder">
@@ -226,7 +282,7 @@ const total = tips.length;
         {next ? (
           <a class="navcard next" href={href(next.slug)}>
             <span class="dir">Next →</span>
-            <span class="label">{next.title}</span>
+            <span class="label">{navTitle(next.title)}</span>
           </a>
         ) : (
           <span class="navcard next placeholder">

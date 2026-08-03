@@ -1,4 +1,4 @@
-# Week 6 — Shift Early
+# Tip 6 — Shift Early
 
 - Suggested post date: Monday, August 10, 2026
 - Ties to: Regular practices

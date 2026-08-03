@@ -1,4 +1,4 @@
-# Week 9 — Race Day Checklist
+# Tip 9 — Race Day Checklist
 
 - Suggested post date: Monday, August 31, 2026
 - Ties to: Race #1 — Bluff Bash Festival (Sept 4-6)

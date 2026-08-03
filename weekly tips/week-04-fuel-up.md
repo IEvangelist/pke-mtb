@@ -1,4 +1,4 @@
-# Week 4 — Fuel Up
+# Tip 4 — Fuel Up
 
 - Suggested post date: Monday, July 27, 2026
 - Ties to: Before Training Camp (Aug 1-2)

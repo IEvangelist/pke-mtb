@@ -1,4 +1,4 @@
-# Week 1 — Hydration
+# Tip 1 — Hydration
 
 - Suggested post date: Monday, July 6, 2026
 - Ties to: First practice (Tue, July 7)

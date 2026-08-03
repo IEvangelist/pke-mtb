@@ -1,4 +1,4 @@
-# Week 12 — Ups & Downs (Climbing + Descending)
+# Tip 12 — Ups & Downs (Climbing + Descending)
 
 - Suggested post date: Monday, September 21, 2026
 - Ties to: Race #3 — Englewood Epic (Sept 25-27)

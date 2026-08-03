@@ -1,21 +1,396 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import { getTips } from '../tips.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const first = getTips()[0];
-const target = `${base}/${first.slug}`;
+const tips = getTips();
+const href = (slug: string) => `${base}/${slug}`;
+const phases = [
+  {
+    title: 'Start strong',
+    description: 'Bike setup, hydration, fueling, and the habits that make every ride better.',
+    tips: tips.slice(0, 6),
+  },
+  {
+    title: 'Ride with skill',
+    description: 'Control the bike, read the trail, and learn how to spend energy wisely.',
+    tips: tips.slice(6, 12),
+  },
+  {
+    title: 'Finish ready',
+    description: 'Prepare for race day, solve problems, and close the season with confidence.',
+    tips: tips.slice(12),
+  },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content={`0; url=${target}`} />
-    <link rel="canonical" href={target} />
-    <title>Redirecting…</title>
+    <meta name="description" content="Mountain biking tips for Pewaukee riders, from first practice through the championship finish." />
+    <meta name="theme-color" content="#111113" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>PEWAUKEE MOUNTAIN BIKING Tips</title>
+    <ViewTransitions />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f5f6;
+        --surface: #ffffff;
+        --text: #171719;
+        --muted: #65656d;
+        --border: #dddddf;
+        --accent: #c9151d;
+        --accent-bright: #c9151d;
+        --accent-deep: #111113;
+        --hero-text: #ffffff;
+        --hero-muted: #e1e1e4;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101012;
+          --surface: #19191c;
+          --text: #f1f1f3;
+          --muted: #a4a4ab;
+          --border: #303034;
+          --accent: #ff6268;
+          --accent-bright: #c9151d;
+          --accent-deep: #09090a;
+          --hero-text: #ffffff;
+          --hero-muted: #dddddf;
+        }
+      }
+      @media (min-width: 48rem) {
+        html { font-size: 125%; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-width: 18rem;
+        font-family: "Trebuchet MS", "Avenir Next", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        position: relative;
+        overflow: hidden;
+        min-height: clamp(30rem, 62dvh, 38rem);
+        background: var(--accent-deep);
+        color: var(--hero-text);
+      }
+      header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(8, 8, 9, 0.96) 0%, rgba(8, 8, 9, 0.82) 40%, rgba(8, 8, 9, 0.28) 72%, rgba(8, 8, 9, 0.12) 100%);
+      }
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 58% 48%;
+      }
+      .hero {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        min-height: clamp(30rem, 62dvh, 38rem);
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: clamp(3rem, 8vw, 6rem) 1.25rem clamp(3rem, 7vw, 5rem);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .hero > * {
+        animation: hero-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .hero > :nth-child(2) { animation-delay: 80ms; }
+      .hero > :nth-child(3) { animation-delay: 140ms; }
+      .hero > :nth-child(4) { animation-delay: 200ms; }
+      .season {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        max-width: 100%;
+        margin: 0 0 1.25rem;
+        color: var(--accent-bright);
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .club-logo {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+      }
+      h1 {
+        max-width: 10ch;
+        margin: 0;
+        font-size: clamp(2.75rem, 7.2vw, 5.2rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+      .intro {
+        max-width: 32rem;
+        margin: 1.5rem 0 0;
+        color: var(--hero-muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+      .start-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+        padding: 0.8rem 1.1rem;
+        border-radius: 999px;
+        background: var(--accent-bright);
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+      .start-link:hover { background: #a81017; transform: translateY(-2px); }
+      .start-link:active { transform: translateY(1px); }
+      .start-link:focus-visible { outline: 3px solid var(--hero-text); outline-offset: 4px; }
+      .start-link span { font-size: 1.15em; }
+      main {
+        max-width: 68rem;
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 5rem) 1.25rem 0;
+      }
+      .directory-intro {
+        max-width: 42rem;
+        margin-bottom: clamp(3rem, 7vw, 5rem);
+      }
+      .list-heading {
+        margin: 0;
+        font-size: clamp(1.65rem, 3vw, 2.25rem);
+        line-height: 1.15;
+      }
+      .directory-intro p,
+      .phase-heading p {
+        margin: 0.75rem 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .phase {
+        display: grid;
+        grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: start;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .phase + .phase { margin-top: clamp(4rem, 9vw, 7rem); }
+      .phase-heading {
+        position: sticky;
+        top: 2rem;
+        margin: 0;
+      }
+      .phase-heading h3 {
+        margin: 0;
+        color: var(--accent);
+        font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+        line-height: 1.2;
+      }
+      .phase-heading p { font-size: 0.9rem; }
+      .tip-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 2rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .tip-item {
+        animation: rise 0.45s ease both;
+        animation-delay: calc(var(--index) * 35ms);
+      }
+      .tip-link {
+        display: grid;
+        grid-template-columns: 3.75rem minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1rem;
+        min-height: 5.75rem;
+        padding: 0 0.5rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
+        text-decoration: none;
+        transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+      }
+      .tip-number {
+        color: var(--accent);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        font-variant-numeric: tabular-nums;
+      }
+      .tip-title {
+        display: block;
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        font-weight: 700;
+        line-height: 1.35;
+      }
+      .tip-date {
+        display: block;
+        margin-top: 0.35rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .arrow {
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        color: var(--accent);
+        transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+      }
+      .tip-link:hover .arrow,
+      .tip-link:focus-visible .arrow {
+        background: var(--accent);
+        color: var(--bg);
+        transform: translateX(3px);
+      }
+      .tip-link:hover .tip-title { color: var(--accent); }
+      .tip-link:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+      .tip-link:active { transform: translateY(1px); }
+      .tip-link:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+        outline-offset: 4px;
+      }
+      .home-trail {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(14rem, 0.8fr);
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+        margin-top: clamp(5rem, 11vw, 8rem);
+        padding: clamp(2rem, 5vw, 3.5rem) 0;
+        border-top: 1px solid var(--border);
+      }
+      .course-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .home-label {
+        margin: 0 0 0.75rem;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .home-copy h2 {
+        margin: 0;
+        font-size: clamp(1.9rem, 4vw, 3rem);
+        line-height: 1;
+      }
+      .home-copy p:last-child {
+        margin: 1rem 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      footer {
+        max-width: 68rem;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 2rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      footer a { color: inherit; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes hero-rise {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: none; }
+      }
+      @media (max-width: 44rem) {
+        header,
+        .hero { min-height: 32rem; }
+        header::after { background: linear-gradient(90deg, rgba(8, 8, 9, 0.94), rgba(8, 8, 9, 0.5)); }
+        .hero-image { object-position: 58% center; }
+        .season { font-size: 0.68rem; }
+        .phase { grid-template-columns: 1fr; gap: 1.25rem; }
+        .phase-heading { position: static; }
+        .tip-list { grid-template-columns: 1fr; }
+        .tip-link { min-height: 5.5rem; }
+        .home-trail { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero > *, .tip-item { animation: none; }
+        .arrow, .start-link, .tip-link { transition: none; }
+      }
+    </style>
   </head>
   <body>
-    <a href={target}>Continue to the first tip</a>
+    <header>
+      <img class="hero-image" src={`${base}/minooka-trail.webp`} alt="Leaf-covered mountain bike singletrack winding through Minooka Park" width="1600" height="1200" fetchpriority="high" />
+      <div class="hero">
+        <p class="season"><img class="club-logo" src={`${base}/logo.png`} alt="" width="2550" height="2336" />PEWAUKEE MOUNTAIN BIKING</p>
+        <h1>Trail tips</h1>
+        <p class="intro">Quick reads that help riders prepare, build confidence, and have more fun on the trail.</p>
+        <a class="start-link" href={href(tips[0].slug)}>Start tip 1 <span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+    <main>
+      <div class="directory-intro">
+        <h2 class="list-heading">Choose your next ride</h2>
+        <p>{tips.length} tips follow the season from first practice through the championship finish.</p>
+      </div>
+      {phases.map((phase) => (
+        <section class="phase" aria-labelledby={`phase-${phase.title.toLowerCase().replaceAll(' ', '-')}`}>
+          <div class="phase-heading">
+            <h3 id={`phase-${phase.title.toLowerCase().replaceAll(' ', '-')}`}>{phase.title}</h3>
+            <p>{phase.description}</p>
+          </div>
+          <ol class="tip-list" start={phase.tips[0].week}>
+            {phase.tips.map((tip, index) => (
+              <li class="tip-item" style={`--index: ${index}`}>
+                <a class="tip-link" href={href(tip.slug)}>
+                  <span class="tip-number">TIP {String(tip.week).padStart(2, '0')}</span>
+                  <span>
+                    <span class="tip-title">{tip.title.replace(/^Tip\s+\d+\s+[^A-Za-z0-9]+\s+/, '')}</span>
+                    <span class="tip-date">{tip.postDate}</span>
+                  </span>
+                  <span class="arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+      <section class="home-trail" aria-labelledby="home-trail-title">
+        <img class="course-image" src={`${base}/minooka-course.webp`} alt="Aerial view of mountain bike routes through Minooka Park" width="1600" height="728" loading="lazy" />
+        <div class="home-copy">
+          <p class="home-label">Home trail</p>
+          <h2 id="home-trail-title">Minooka Park</h2>
+          <p>Singletrack in Waukesha, Wisconsin, where our riders build skills and confidence.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      PEWAUKEE MOUNTAIN BIKING
+    </footer>
   </body>
 </html>

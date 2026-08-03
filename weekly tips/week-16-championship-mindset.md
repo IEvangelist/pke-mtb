@@ -1,4 +1,4 @@
-# Week 16 — Championship Mindset
+# Tip 16 — Championship Mindset
 
 - Suggested post date: Monday, October 19, 2026
 - Ties to: Race #5 — State Championships at Trek Trails (Oct 23-25)

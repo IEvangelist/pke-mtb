@@ -1,4 +1,4 @@
-# Week 11 — Pacing & the Start
+# Tip 11 — Pacing & the Start
 
 - Suggested post date: Monday, September 14, 2026
 - Ties to: Race #2 — Minooka Mania (Sept 18-20)

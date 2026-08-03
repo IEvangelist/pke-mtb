@@ -1,4 +1,4 @@
-# Week 10 — Cornering
+# Tip 10 — Cornering
 
 - Suggested post date: Monday, September 7, 2026
 - Ties to: Regular practices

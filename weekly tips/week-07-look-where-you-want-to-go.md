@@ -1,4 +1,4 @@
-# Week 7 — Look Where You Want to Go
+# Tip 7 — Look Where You Want to Go
 
 - Suggested post date: Monday, August 17, 2026
 - Ties to: Regular practices

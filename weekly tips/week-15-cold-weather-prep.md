@@ -1,4 +1,4 @@
-# Week 15 — Cold Weather Prep
+# Tip 15 — Cold Weather Prep
 
 - Suggested post date: Monday, October 12, 2026
 - Ties to: Race #4 — Gnarly Nordic (Oct 16-18)
