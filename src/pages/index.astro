@@ -310,17 +310,102 @@ const phases = [
         color: var(--muted);
         line-height: 1.6;
       }
-      footer {
+      .site-footer {
+        margin-top: clamp(3rem, 8vw, 6rem);
+        border-top: 0.35rem solid var(--accent-bright);
+        background: #0b0b0d;
+        color: #f5f5f6;
+      }
+      .footer-main,
+      .footer-meta {
         max-width: 68rem;
         margin: 0 auto;
-        padding: 1.5rem 1.25rem 2rem;
-        border-top: 1px solid var(--border);
-        color: var(--muted);
+        padding-inline: 1.25rem;
+      }
+      .footer-main {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+        gap: clamp(3rem, 8vw, 7rem);
+        padding-block: clamp(3rem, 7vw, 5rem);
+      }
+      .footer-brand {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+      }
+      .footer-logo {
+        width: 4.5rem;
+        height: 4.5rem;
+        flex: 0 0 auto;
+        object-fit: contain;
+      }
+      .footer-name {
+        max-width: 13ch;
+        margin: 0;
+        font-size: clamp(1.45rem, 3.5vw, 2.15rem);
+        font-weight: 800;
+        line-height: 0.98;
+      }
+      .footer-tagline {
+        max-width: 28rem;
+        margin: 1rem 0 0;
+        color: #a9a9b0;
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+      .footer-heading {
+        margin: 0 0 0.75rem;
+        color: #a9a9b0;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .footer-links {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #353539;
+        list-style: none;
+      }
+      .footer-links li { border-bottom: 1px solid #353539; }
+      .footer-links a {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        min-height: 3.75rem;
+        padding: 0.8rem 0;
+        color: #f5f5f6;
+        font-size: 0.9rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-decoration: none;
+        transition: color 160ms ease, padding 160ms ease;
+      }
+      .footer-links a::after {
+        content: "↗";
+        color: var(--accent-bright);
+        font-size: 1.15rem;
+      }
+      .footer-links a:hover { padding-left: 0.35rem; color: #ff7479; }
+      .footer-links a:focus-visible,
+      .footer-credit:focus-visible {
+        outline: 3px solid #ff7479;
+        outline-offset: 4px;
+      }
+      .footer-meta {
+        display: flex;
+        gap: 1rem 2rem;
+        justify-content: space-between;
+        padding-block: 1.25rem 1.75rem;
+        border-top: 1px solid #353539;
+        color: #a9a9b0;
         font-size: 0.68rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.04em;
       }
-      footer a { color: inherit; }
+      .footer-meta p { margin: 0; }
+      .footer-credit { color: #f5f5f6; text-underline-offset: 0.22em; }
       @keyframes rise {
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: none; }
@@ -340,10 +425,12 @@ const phases = [
         .tip-list { grid-template-columns: 1fr; }
         .tip-link { min-height: 5.5rem; }
         .home-trail { grid-template-columns: 1fr; }
+        .footer-main { grid-template-columns: 1fr; gap: 2.75rem; }
+        .footer-meta { flex-direction: column; }
       }
       @media (prefers-reduced-motion: reduce) {
         .hero > *, .tip-item { animation: none; }
-        .arrow, .start-link, .tip-link { transition: none; }
+        .arrow, .start-link, .tip-link, .footer-links a { transition: none; }
       }
     </style>
   </head>
@@ -393,8 +480,28 @@ const phases = [
         </div>
       </section>
     </main>
-    <footer>
-      PEWAUKEE MOUNTAIN BIKING · Site by <a href="https://davidpine.dev">David Pine</a>
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <Image class="footer-logo" src={logo} alt="" format="webp" width={112} />
+          <div>
+            <p class="footer-name">PEWAUKEE MOUNTAIN BIKING</p>
+            <p class="footer-tagline">Helping student athletes build skills, confidence, and community on the trail.</p>
+          </div>
+        </div>
+        <nav aria-labelledby="footer-links-heading">
+          <p class="footer-heading" id="footer-links-heading">Find the team</p>
+          <ul class="footer-links">
+            <li><a href="https://www.facebook.com/PKEMTB/">Pewaukee Mountain Bike Team on Facebook</a></li>
+            <li><a href="https://www.pewaukeeschools.org/post/pewaukee-mountain-biking-club">Pewaukee Mountain Biking Club</a></li>
+            <li><a href="https://sites.google.com/pewaukeeschools.org/mtb/home">Pewaukee MTB team site</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-meta">
+        <p>Ride smart. Ride together.</p>
+        <p>Site by <a class="footer-credit" href="https://davidpine.dev">David Pine</a></p>
+      </div>
     </footer>
   </body>
 </html>
