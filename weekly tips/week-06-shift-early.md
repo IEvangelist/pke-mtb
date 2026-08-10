@@ -13,6 +13,7 @@ Grinding to a dead stop halfway up because you shifted too late? We've all done 
 Remember:
 ⚙️ Downshift (easier gear) as you APPROACH the climb
 ⚙️ Keep your legs spinning, not mashing
+⚙️ Eyes up — look far enough ahead to spot the climb and shift early
 ⚙️ Anticipate — read the trail ahead
 
 Smooth shifting keeps your chain happy and your momentum alive.
