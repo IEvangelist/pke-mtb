@@ -8,12 +8,12 @@
 
 Tip of the Week: Brakes are for control, not just stopping. 🛑
 
-Grabbing a fistful of brake in the middle of a corner is a great way to meet the ground. 😬
+Smooth braking keeps your tires gripping the trail.
 
 Smooth is fast:
-🛑 Two fingers on the levers, always ready
-🛑 Brake BEFORE the corner, not in it
-🛑 Feather them (light squeezes), don't grab
-🛑 Use BOTH brakes — the front one does most of the stopping
+🛑 One finger on each brake lever, always ready
+🛑 Squeeze BOTH brakes smoothly — don't grab
+🛑 Stay loose and move your hips back as you slow
+🛑 Do most of your braking before a corner, then ease off as you turn
 
-Slow in, fast out. Control your speed early, then let go and fly.
+Slow in, fast out. Control first, speed second.
