@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { ViewTransitions } from 'astro:transitions';
 import logo from '../assets/logo.png';
-import minookaCourse from '../assets/minooka-course.png';
 import minookaTrail from '../assets/minooka-trail.png';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getTips } from '../tips.js';
@@ -278,20 +277,28 @@ const phases = [
         outline-offset: 4px;
       }
       .home-trail {
-        display: grid;
-        grid-template-columns: minmax(0, 1.7fr) minmax(14rem, 0.8fr);
-        gap: clamp(2rem, 5vw, 4.5rem);
-        align-items: center;
         margin-top: clamp(5rem, 11vw, 8rem);
         padding: clamp(2rem, 5vw, 3.5rem) 0;
         border-top: 1px solid var(--border);
       }
-      .course-image {
+      .home-copy {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.5rem 3rem;
+        align-items: end;
+        margin-bottom: 1.5rem;
+      }
+      .course-map {
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+      .course-map iframe {
         display: block;
         width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        border-radius: 8px;
+        height: clamp(26rem, 56vw, 38rem);
+        border: 0;
       }
       .home-label {
         margin: 0 0 0.75rem;
@@ -311,6 +318,37 @@ const phases = [
         color: var(--muted);
         line-height: 1.6;
       }
+      .map-link {
+        display: inline-flex;
+        min-height: 2.75rem;
+        padding: 0.7rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        color: var(--text);
+        font-size: 0.82rem;
+        font-weight: 800;
+        line-height: 1.2;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      }
+      .map-link span {
+        color: var(--accent);
+        font-size: 1.1em;
+      }
+      .map-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .map-link:active { transform: translateY(1px); }
+      .map-link:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+        outline-offset: 4px;
+      }
       @keyframes rise {
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: none; }
@@ -329,11 +367,12 @@ const phases = [
         .phase-heading { position: static; }
         .tip-list { grid-template-columns: 1fr; }
         .tip-link { min-height: 5.5rem; }
-        .home-trail { grid-template-columns: 1fr; }
+        .home-copy { grid-template-columns: 1fr; align-items: start; }
+        .map-link { justify-self: start; }
       }
       @media (prefers-reduced-motion: reduce) {
         .hero > *, .tip-item { animation: none; }
-        .arrow, .start-link, .tip-link { transition: none; }
+        .arrow, .start-link, .tip-link, .map-link { transition: none; }
       }
     </style>
   </head>
@@ -375,11 +414,29 @@ const phases = [
         </section>
       ))}
       <section class="home-trail" aria-labelledby="home-trail-title">
-        <Image class="course-image" src={minookaCourse} alt="Aerial view of mountain bike routes through Minooka Park" format="webp" widths={[640, 960, 1600]} sizes="(max-width: 44rem) 100vw, 68vw" loading="lazy" />
         <div class="home-copy">
-          <p class="home-label">Home trail</p>
-          <h2 id="home-trail-title">Minooka Park</h2>
-          <p>Singletrack in Waukesha, Wisconsin, where our riders build skills and confidence.</p>
+          <div>
+            <p class="home-label">Home trail</p>
+            <h2 id="home-trail-title">Minooka Park</h2>
+            <p>Singletrack in Waukesha, Wisconsin, where our riders build skills and confidence.</p>
+          </div>
+          <a
+            class="map-link"
+            href="https://www.google.com/maps/d/u/0/viewer?ll=42.97472965168634%2C-88.18520071887923&z=16&mid=1Z5WsbRpVyoduWuYWgCFjcjL13leQBco"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open map in new window <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="course-map">
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=1Z5WsbRpVyoduWuYWgCFjcjL13leQBco&ehbc=2E312F&ll=42.97472965168634%2C-88.18520071887923&z=16"
+            title="Minooka Park mountain bike trail map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
         </div>
       </section>
     </main>
