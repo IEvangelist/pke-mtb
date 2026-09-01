@@ -1,17 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <footer class="site-footer">
   <div class="footer-main">
-    <div class="footer-brand">
+    <a class="footer-brand" href={base || '/'} aria-label="Pewaukee Mountain Biking tips home">
       <Image class="footer-logo" src={logo} alt="" format="webp" width={112} />
       <div>
         <p class="footer-name">PEWAUKEE MOUNTAIN BIKING</p>
         <p class="footer-tagline">Helping student athletes build skills, confidence, and community on the trail.</p>
       </div>
-    </div>
+    </a>
     <nav aria-labelledby="footer-links-heading">
       <p class="footer-heading" id="footer-links-heading">Find the team</p>
       <ul class="footer-links">
@@ -54,7 +56,10 @@ import logo from '../assets/logo.png';
     display: flex;
     gap: 1.25rem;
     align-items: flex-start;
+    color: inherit;
+    text-decoration: none;
   }
+  .footer-brand:focus-visible { outline: 3px solid #ff7479; outline-offset: 4px; }
   .footer-logo {
     width: 4.5rem;
     height: 4.5rem;

@@ -1,4 +1,4 @@
-# Tip 9 — Race Day Checklist
+# Tip 9 — Tire Pressure
 
 - Suggested post date: Monday, August 31, 2026
 - Ties to: Race #1 — Bluff Bash Festival (Sept 4-6)
@@ -6,15 +6,15 @@
 
 ---
 
-Tip of the Week: Our first race is almost here — pack the night before! 🏁
+Tip of the Week: Tire pressure can make or break your ride. 🚲💨
 
-Nothing kills race-day vibes like realizing your helmet is sitting at home.
+Too little air can lead to pinch flats or rim strikes. Too much can reduce traction and make the bike bounce across the trail. The right pressure gives you grip, control, and protection.
 
-The essentials:
-🎒 Helmet, gloves, shoes, jersey
-🚴 Bike checked (remember the ABCs!)
-💧 Full water bottle + a snack
-🧴 Sunscreen and a light layer for the weather
-🆔 Number plate + any team gear
+Before every practice and race:
+🛞 Check both tires before you ride
+🪨 For a rocky course like Bluff Bash, you may need a little more pressure than usual
+👋 Not sure what pressure is right for you? Ask a coach — rider weight, tire size, and setup all matter
 
-Get there early, warm up, breathe. You've trained for this — go have fun!
+And remember [Tip 1: Hydration](./week-01-hydration): drink a full bottle in the hour before you ride. From [Tip 4: Fuel Up](./week-04-fuel-up): eat a real meal 2-3 hours beforehand. Show up with air in your tires, water in your body, and fuel in your tank. 💧🍌
+
+Check it before you send it! 🏁
