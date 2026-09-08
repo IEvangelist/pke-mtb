@@ -6,14 +6,15 @@
 
 ---
 
-Tip of the Week: Don't blow up in the first 30 seconds. 🚦
+Tip of the Week: Start under control and race your pace. 🚦
 
-Everybody sprints off the line like their shoes are on fire. Then… they fade.
+The race isn't won in the first 30 seconds, but going out too hard can cost you later.
 
 Race smart:
-🚦 Start strong to grab position, then settle into YOUR pace
+🚦 Follow the start officials, hold your line, and stay in control
+🚦 Settle into YOUR pace once the field gets moving
 🫁 Breathe steady — if you can't talk at all, ease off a hair
-📈 Save something for the final lap and finish strong
-🐢 Smooth and steady passes the rider who went out too hard
+📈 Save some energy for later in the race
+🤝 Pass only when it's safe, and don't obstruct or endanger another rider
 
 It's a race, not a drag strip. Run your own race.

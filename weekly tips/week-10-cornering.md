@@ -6,14 +6,14 @@
 
 ---
 
-Tip of the Week: Rail the corner, don't fight it. 🔄
+Tip of the Week: Smooth cornering starts in the ready position. 🔄
 
-Corners are where you make up time — and where it's easy to wash out.
+Stay balanced and let the bike move beneath you.
 
 The moves:
-🔄 Outside pedal DOWN, press your weight into it
-🔄 Look through the corner to the exit (eyes lead!)
-🔄 Lean the BIKE, keep your body a little more upright
-🔄 Brake before the turn, then off the brakes through it
+🔄 Get low with a deep bend in your elbows and knees
+🔄 Keep your pedals level and your weight in your feet — heavy feet, light hands
+🔄 Look in the direction of the turn and toward the exit
+🔄 Lean the bike into the turn while keeping your torso quiet and your knees wide
 
-Smooth corners feel like magic. Practice one turn over and over and you'll feel it click.
+Start at a comfortable speed and practice one turn at a time. Smooth and balanced comes before fast.

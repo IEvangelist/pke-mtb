@@ -16,4 +16,4 @@ Race your best:
 😮‍💨 Deep breaths at the line, then let it rip
 🙌 Whatever happens, you showed up all season and earned this spot
 
-Give it everything, cheer loud for your teammates, and soak it in. Let's go!
+Give your best, respect your competitors and officials, cheer loud for your teammates, and soak it in. Let's go!

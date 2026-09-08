@@ -15,8 +15,8 @@ Climbing 🧗
 ⬆️ Lean forward a bit to keep the front wheel down
 
 Descending 🏔️
-⬇️ Stand up, drop your heels, weight slightly back
+⬇️ Stand in a low, centered ready position and lower your heels
 ⬇️ Stay loose and let the bike move under you
 ⬇️ Look ahead, not at your front tire
 
-Up or down — relax your grip and keep breathing.
+Up or down — stay balanced, relax your grip, and keep breathing.

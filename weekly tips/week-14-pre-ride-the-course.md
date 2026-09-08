@@ -11,9 +11,9 @@ Tip of the Week: Know before you go. 🗺️
 Racing a course you've never seen is like taking a test you didn't study for.
 
 Scout it out:
-🗺️ Ride the course slowly before you race it
+🗺️ Pre-ride only during the official preview time and follow all closures and instructions
+🐢 Ride slowly, stay in control, and watch for other riders
 👀 Spot the tricky corners, roots, and steep sections
 🧠 Pick your lines and remember your landmarks
-🔁 If you can, ride the hard parts twice
 
-Come race lap, your brain already knows the way. Confidence = speed.
+Come race lap, your brain already knows the way. Confidence comes from being prepared.

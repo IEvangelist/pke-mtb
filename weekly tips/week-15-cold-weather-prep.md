@@ -13,7 +13,7 @@ Cold, stiff muscles don't perform, and shivering isn't fun.
 Dress in layers:
 🧥 Start with a light base layer you can move in
 🧤 Full-finger gloves — cold hands can't brake or shift well
-🧢 A thin cap under the helmet keeps you warm
+🧢 Use only a thin, helmet-compatible layer that keeps your helmet level and secure
 🔥 Warm up a little longer before racing in the cold
 
 Tip: You can always peel a layer off. Better to have it and not need it.
