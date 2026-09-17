@@ -6,15 +6,15 @@
 
 ---
 
-Tip of the Week: Start under control and race your pace. 🚦
+Tip of the Week: Start with purpose and race your pace. 🚦
 
-The race isn't won in the first 30 seconds, but going out too hard can cost you later.
+A strong start can help you gain position, but don't use all your energy on the first climb.
 
 Race smart:
-🚦 Follow the start officials, hold your line, and stay in control
-🚦 Settle into YOUR pace once the field gets moving
-🫁 Breathe steady — if you can't talk at all, ease off a hair
-📈 Save some energy for later in the race
-🤝 Pass only when it's safe, and don't obstruct or endanger another rider
+🚦 Hold your line and stay in control
+⛰️ Push with purpose on the start climb, then settle into YOUR pace when the course allows
+🫁 Don't forget to breathe! Even experienced racers hold their breath when nervous
+📈 Pace for the whole race, not just the first hill
+🤝 Pass safely without obstructing or endangering another rider
 
-It's a race, not a drag strip. Run your own race.
+Race hard. Stay in control. Ride your own race.
