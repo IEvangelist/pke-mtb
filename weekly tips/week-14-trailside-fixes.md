@@ -1,6 +1,6 @@
-# Tip 13 — Trailside Fixes
+# Tip 14 — Trailside Fixes
 
-- Suggested post date: Monday, September 28, 2026
+- Suggested post date: Monday, October 5, 2026
 - Ties to: Regular practices
 - Note: Plain text below is ready to paste into SportsYou (no bold/italic).
 

@@ -1,7 +1,7 @@
-# Tip 14 — Pre-Ride the Course
+# Tip 15 — Pre-Ride the Course
 
-- Suggested post date: Monday, October 5, 2026
-- Ties to: Regular practices
+- Suggested post date: Monday, October 12, 2026
+- Ties to: Race #4 — Gnarly Nordic (Oct 16-18)
 - Note: Plain text below is ready to paste into SportsYou (no bold/italic).
 
 ---

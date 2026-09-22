@@ -1,7 +1,7 @@
-# Tip 15 — Cold Weather Prep
+# Tip 16 — Cold Weather Prep
 
-- Suggested post date: Monday, October 12, 2026
-- Ties to: Race #4 — Gnarly Nordic (Oct 16-18)
+- Suggested post date: Monday, October 19, 2026
+- Ties to: Cold late-season rides and Race #5 — State Championships at Trek Trails (Oct 23-25)
 - Note: Plain text below is ready to paste into SportsYou (no bold/italic).
 
 ---

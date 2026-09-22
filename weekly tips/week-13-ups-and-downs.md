@@ -1,7 +1,7 @@
-# Tip 12 — Ups & Downs (Climbing + Descending)
+# Tip 13 — Ups & Downs (Climbing + Descending)
 
-- Suggested post date: Monday, September 21, 2026
-- Ties to: Race #3 — Englewood Epic (Sept 25-27)
+- Suggested post date: Monday, September 28, 2026
+- Ties to: Climbing and descending at fall practices
 - Note: Plain text below is ready to paste into SportsYou (no bold/italic).
 
 ---
