@@ -36,7 +36,7 @@ function parseTip(path, raw) {
   const parts = raw.split(/\n-{3,}\s*\n/);
   const body = (parts.length > 1 ? parts.slice(1).join('\n---\n') : raw).trim();
 
-  return { slug, week, title, postDate, bodyHtml: marked.parse(body) };
+  return { slug, week, title, postDate, bodyText: body, bodyHtml: marked.parse(body) };
 }
 
 const tips = Object.entries(rawFiles)

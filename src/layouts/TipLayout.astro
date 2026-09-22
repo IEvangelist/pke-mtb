@@ -13,6 +13,7 @@ const navTitle = (title: string) => title
   .replace(/\s*\(.+\)$/, '');
 const total = tips.length;
 const progress = ((idx + 1) / total) * 100;
+const isLastTip = idx === total - 1;
 ---
 
 <!doctype html>
@@ -65,24 +66,53 @@ const progress = ((idx + 1) / total) * 100;
 
       .tip-header {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
         gap: 1rem;
         margin-bottom: 1rem;
       }
 
-      .all-tips {
+      .tip-action {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 2.75rem;
         margin: 0;
-        color: var(--muted);
+        padding: 0.55rem 1rem;
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+        border-radius: 999px;
+        background: var(--surface);
+        color: var(--accent);
+        font-family: inherit;
         font-size: 0.85rem;
-        font-weight: 600;
+        font-weight: 700;
+        line-height: 1.3;
         text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
       }
-      .all-tips:hover { color: var(--accent); }
-      .all-tips:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+      .all-tips { background: var(--accent-soft); }
+      .all-tips span { font-size: 1.2em; }
+      .tip-action:hover:not(:disabled) {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+      .tip-action:active:not(:disabled) { transform: translateY(1px); }
+      .tip-action:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+      .tip-action:disabled { cursor: wait; opacity: 0.7; }
+
+      .tip-tools {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 0.85rem;
+        margin-bottom: 1.5rem;
+      }
+      .copy-status { margin: 0; color: var(--muted); font-size: 0.85rem; }
+      .copy-status[data-state="error"] { color: var(--accent); }
 
       .eyebrow {
         display: inline-block;
@@ -133,6 +163,22 @@ const progress = ((idx + 1) / total) * 100;
         transform: scaleX(-1);
         filter: drop-shadow(0 2px 1px color-mix(in srgb, var(--bg) 85%, transparent));
       }
+      .trail.is-finished .trail-marker { left: calc(100% - 2.5rem); }
+      .trail.is-finished .trail-rider {
+        animation: finish-ride 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .finish-flag {
+        position: absolute;
+        right: -0.15rem;
+        top: 50%;
+        transform: translateY(-65%);
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+      @keyframes finish-ride {
+        from { transform: translateX(-4rem) scaleX(-1); }
+        to { transform: translateX(0) scaleX(-1); }
+      }
       h1 {
         font-size: clamp(1.7rem, 5vw, 2.35rem);
         line-height: 1.2;
@@ -146,6 +192,43 @@ const progress = ((idx + 1) / total) * 100;
       }
       article :is(p, li) { margin: 0 0 1.1rem; }
       article strong { font-weight: 650; }
+
+      .finish-celebration {
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 1.5rem;
+        padding: 1.5rem;
+        border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+        border-radius: var(--radius);
+        background: var(--accent-soft);
+        text-align: center;
+      }
+      .finish-celebration h2 { margin: 0 0 0.35rem; color: var(--accent); font-size: 1.35rem; }
+      .finish-celebration p { margin: 0; }
+      .finish-celebration .confetti-hint { margin-top: 0.75rem; font-size: 0.85rem; }
+      .confetti-toggle { position: relative; margin-top: 0.75rem; }
+      .confetti-toggle[hidden] { display: none; }
+      .confetti { position: absolute; inset: 0; pointer-events: none; }
+      .confetti-piece {
+        position: absolute;
+        top: -0.75rem;
+        left: var(--left);
+        width: 0.4rem;
+        height: 0.7rem;
+        background: var(--accent);
+        animation: confetti-fall 2.8s linear var(--delay) infinite both;
+        animation-play-state: paused;
+      }
+      .is-confetti-running .confetti-piece { animation-play-state: running; }
+      .confetti-extra { animation-duration: 1.6s; animation-delay: 0s; animation-iteration-count: 1; }
+      .confetti-piece:nth-child(3n) { background: var(--text); }
+      .confetti-piece:nth-child(3n + 1) { background: var(--muted); }
+      .confetti-piece:nth-child(even) { border-radius: 50%; }
+      @keyframes confetti-fall {
+        from { opacity: 0; transform: translate3d(0, 0, 0) rotate(0); }
+        15%, 70% { opacity: 1; }
+        to { opacity: 0; transform: translate3d(var(--drift), var(--fall-distance, 14rem), 0) rotate(var(--spin)); }
+      }
 
       nav {
         display: grid;
@@ -218,7 +301,9 @@ const progress = ((idx + 1) / total) * 100;
 
       @media (prefers-reduced-motion: reduce) {
         .eyebrow, h1, article, nav { animation: none; }
-        .trail-fill, .trail-marker { transition: none; }
+        .trail-fill, .trail-marker, .tip-action { transition: none; }
+        .trail.is-finished .trail-rider { animation: none; }
+        .confetti, .confetti-toggle, .confetti-hint { display: none; }
       }
 
       /* Swipe-style directional page transitions. */
@@ -259,18 +344,43 @@ const progress = ((idx + 1) / total) * 100;
   <body>
     <main>
       <div class="tip-header">
-        <a class="all-tips" href={`${base}/`} aria-label="View all tips">← All tips</a>
+        <a class="all-tips tip-action" href={`${base}/`} aria-label="View all tips">
+          <span aria-hidden="true">←</span> All tips
+        </a>
         <span class="eyebrow">Tip {idx + 1} of {total}</span>
       </div>
-      <div class="trail" style={`--progress: ${progress}%`} role="presentation">
+      <div class:list={['trail', { 'is-finished': isLastTip }]} style={`--progress: ${progress}%`} aria-hidden="true">
         <div class="trail-fill" style={`width: ${progress}%`}></div>
         <span class="trail-marker"><span class="trail-rider">🚵</span></span>
+        {isLastTip && <span class="finish-flag">🏁</span>}
       </div>
       <h1>{current.title}</h1>
+      <div class="tip-tools">
+        <button class="tip-action" type="button" data-copy-tip={current.bodyText} aria-describedby="copy-status">
+          Copy tip
+        </button>
+        <p id="copy-status" class="copy-status" role="status" aria-atomic="true"></p>
+      </div>
+      {isLastTip && (
+        <section class="finish-celebration" aria-labelledby="finish-title">
+          <div class="confetti" aria-hidden="true">
+            {Array.from({ length: 18 }, (_, index) => (
+              <span
+                class="confetti-piece"
+                style={`--left: ${(index * 37) % 100}%; --delay: ${index * 140}ms; --drift: ${(index % 2 ? 1 : -1) * (20 + index * 3)}px; --spin: ${index % 2 ? 420 : -420}deg;`}
+              />
+            ))}
+          </div>
+          <h2 id="finish-title">You made it to the finish!</h2>
+          <p>That's a wrap on this season's tips. Keep riding!</p>
+          <p class="confetti-hint">Move your mouse or swipe here for more confetti.</p>
+          <button class="tip-action confetti-toggle" type="button" hidden>Pause confetti</button>
+        </section>
+      )}
       <article set:html={current.bodyHtml} />
-      <nav>
+      <nav aria-label="Tip navigation">
         {prev ? (
-          <a class="navcard prev" href={href(prev.slug)}>
+          <a class="navcard prev" href={href(prev.slug)} aria-keyshortcuts="ArrowLeft" title="Previous tip (Left arrow)">
             <span class="dir">← Previous</span>
             <span class="label">{navTitle(prev.title)}</span>
           </a>
@@ -281,7 +391,7 @@ const progress = ((idx + 1) / total) * 100;
           </span>
         )}
         {next ? (
-          <a class="navcard next" href={href(next.slug)}>
+          <a class="navcard next" href={href(next.slug)} aria-keyshortcuts="ArrowRight" title="Next tip (Right arrow)">
             <span class="dir">Next →</span>
             <span class="label">{navTitle(next.title)}</span>
           </a>
@@ -295,25 +405,177 @@ const progress = ((idx + 1) / total) * 100;
     </main>
     <SiteFooter />
 
-    <script is:inline>
-      // Set the swipe direction before an Astro view transition starts so the
-      // page slides left/right to match the prev/next intent. Delegated on
-      // `document`, which persists across transitions (the body is swapped).
-      if (!window.__navDirBound) {
-        window.__navDirBound = true;
-        document.addEventListener('click', (e) => {
-          const card = e.target.closest('.navcard');
-          if (!card || card.classList.contains('placeholder')) return;
+    <script>
+      import { isTransitionBeforePreparationEvent } from 'astro:transitions/client';
+
+      // Capture sets the direction before Astro handles navigation.
+      // Delegation keeps controls working as Astro swaps tip pages.
+      document.addEventListener('click', async (event) => {
+        if (!(event.target instanceof Element)) return;
+        const card = event.target.closest('a.navcard');
+        if (card) {
           document.documentElement.dataset.dir = card.classList.contains('next')
             ? 'next'
             : 'prev';
+          return;
+        }
+
+        const button = event.target.closest<HTMLButtonElement>('[data-copy-tip]');
+        const status = document.getElementById('copy-status');
+        if (!button || !status || button.disabled) return;
+        const text = button.getAttribute('data-copy-tip');
+        if (text === null) return;
+
+        if (!navigator.clipboard?.writeText) {
+          status.dataset.state = 'error';
+          status.textContent = 'Copy is unavailable. Select the tip text and copy it manually.';
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = 'Copying...';
+        status.textContent = '';
+        delete status.dataset.state;
+        try {
+          await navigator.clipboard.writeText(text);
+          status.textContent = 'Tip copied. Ready to paste!';
+        } catch (error) {
+          console.error('Could not copy the tip:', error);
+          status.dataset.state = 'error';
+          status.textContent = 'Could not copy. Select the tip text and copy it manually.';
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Copy tip';
+        }
+      }, { capture: true });
+
+      document.addEventListener('keydown', (event) => {
+        if (
+          event.defaultPrevented || event.isComposing || event.repeat ||
+          event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
+          (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
+        ) return;
+
+        const target = event.target;
+        if (target instanceof HTMLElement && (
+          target.isContentEditable || target.closest('input, textarea, select')
+        )) return;
+        if (window.getSelection()?.toString()) return;
+
+        const link = document.querySelector<HTMLAnchorElement>(
+          event.key === 'ArrowLeft' ? 'a.navcard.prev' : 'a.navcard.next'
+        );
+        if (!link) return;
+        event.preventDefault();
+        link.click();
+      });
+
+      document.addEventListener('astro:before-preparation', (event) => {
+        if (isTransitionBeforePreparationEvent(event) && event.navigationType === 'traverse') {
+          delete document.documentElement.dataset.dir;
+        }
+      });
+
+      function startConfetti() {
+        const celebration = document.querySelector<HTMLElement>('.finish-celebration');
+        const confetti = celebration?.querySelector<HTMLElement>('.confetti');
+        const template = confetti?.querySelector<HTMLSpanElement>('.confetti-piece');
+        const toggle = celebration?.querySelector<HTMLButtonElement>('.confetti-toggle');
+        if (!celebration || !confetti || !template || !toggle) return;
+
+        const controller = new AbortController();
+        const { signal } = controller;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let visible = false;
+        let paused = false;
+        let running = false;
+        let lastPoint: { x: number; y: number } | undefined;
+        let distance = 0;
+
+        function resetPointer() {
+          lastPoint = undefined;
+          distance = 0;
+        }
+
+        const updateRain = () => {
+          running = visible && !paused && !document.hidden && !reducedMotion.matches;
+          celebration.classList.toggle('is-confetti-running', running);
+          toggle.hidden = reducedMotion.matches;
+          toggle.textContent = paused ? 'Resume confetti' : 'Pause confetti';
+          if (!running) resetPointer();
+        };
+
+        const boostRain = (x: number, y: number) => {
+          if (!running) return;
+          if (lastPoint) {
+            distance += Math.hypot(x - lastPoint.x, y - lastPoint.y);
+            const count = Math.min(Math.floor(distance / 12), 8, 90 - confetti.childElementCount);
+            distance %= 12;
+            for (let index = 0; index < count; index++) {
+              // Importing a seed preserves Astro's scoped styling attributes.
+              const piece = document.importNode(template, false);
+              piece.classList.add('confetti-extra');
+              piece.style.setProperty('--left', `${Math.random() * 100}%`);
+              piece.style.setProperty('--drift', `${(Math.random() - 0.5) * 120}px`);
+              piece.style.setProperty('--spin', `${(Math.random() - 0.5) * 900}deg`);
+              confetti.append(piece);
+            };
+          }
+          lastPoint = { x, y };
+        }
+
+        const visibility = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          updateRain();
         });
-        // Keyboard/history navigation has no clear left-right intent; clear it.
-        document.addEventListener('astro:before-preparation', (e) => {
-          if (e.navigationType === 'traverse') delete document.documentElement.dataset.dir;
+        const size = new ResizeObserver(() => {
+          celebration.style.setProperty('--fall-distance', `${celebration.clientHeight + 32}px`);
         });
+        visibility.observe(celebration);
+        size.observe(celebration);
+        updateRain();
+
+        toggle.addEventListener('click', () => {
+          paused = !paused;
+          updateRain();
+        }, { signal });
+        celebration.addEventListener('pointermove', (event) => {
+          if (event.pointerType !== 'touch') boostRain(event.clientX, event.clientY);
+        }, { passive: true, signal });
+        celebration.addEventListener('pointerleave', resetPointer, { signal });
+        const onTouch = (event: TouchEvent) => {
+          const touch = event.touches[0];
+          if (touch) boostRain(touch.clientX, touch.clientY);
+        };
+        celebration.addEventListener('touchstart', onTouch, { passive: true, signal });
+        celebration.addEventListener('touchmove', onTouch, { passive: true, signal });
+        celebration.addEventListener('touchend', resetPointer, { passive: true, signal });
+        celebration.addEventListener('touchcancel', resetPointer, { passive: true, signal });
+        confetti.addEventListener('animationend', (event) => {
+          if (event.target instanceof HTMLElement && event.target.classList.contains('confetti-extra')) {
+            event.target.remove();
+          }
+        }, { signal });
+        reducedMotion.addEventListener('change', updateRain, { signal });
+        document.addEventListener('visibilitychange', updateRain, { signal });
+
+        return () => {
+          controller.abort();
+          visibility.disconnect();
+          size.disconnect();
+          celebration.classList.remove('is-confetti-running');
+        };
       }
+
+      let stopConfetti: (() => void) | undefined;
+      document.addEventListener('astro:page-load', () => {
+        stopConfetti?.();
+        stopConfetti = startConfetti();
+      });
+      document.addEventListener('astro:before-swap', () => {
+        stopConfetti?.();
+        stopConfetti = undefined;
+      });
     </script>
   </body>
 </html>
-
