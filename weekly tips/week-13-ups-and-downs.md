@@ -13,10 +13,10 @@ Climbing and descending call for different positions — but the same balance an
 Climbing 🧗
 ⬆️ Shift early and keep a smooth, steady spin
 ⬆️ Stay balanced for traction; stand when the terrain calls for it
-⬆️ Keep your eyes up and look through the climb
+⬆️ Keep your eyes up and pedal through the top — not just to it
 
 Descending 🏔️
-⬇️ Use ready position: level pedals, bent elbows and knees
+⬇️ As the trail tips down, settle into ready position: level pedals, bent elbows and knees
 ⬇️ Control speed smoothly with both brakes
 ⬇️ Look ahead and let the bike move beneath you
 
