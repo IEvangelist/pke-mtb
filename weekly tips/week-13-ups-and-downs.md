@@ -6,17 +6,18 @@
 
 ---
 
-Tip of the Week: Climb steady, descend loose. 🧗🏔️
+Tip of the Week: Smooth up, controlled down. 🧗🏔️
 
-Two totally different skills, back to back on every trail.
+Climbing and descending call for different positions — but the same balance and control.
 
 Climbing 🧗
-⬆️ Stay seated for traction, easy gear, steady spin
-⬆️ Lean forward a bit to keep the front wheel down
+⬆️ Shift early and keep a smooth, steady spin
+⬆️ Stay balanced for traction; stand when the terrain calls for it
+⬆️ Keep your eyes up and look through the climb
 
 Descending 🏔️
-⬇️ Stand in a low, centered ready position and lower your heels
-⬇️ Stay loose and let the bike move under you
-⬇️ Look ahead, not at your front tire
+⬇️ Use ready position: level pedals, bent elbows and knees
+⬇️ Control speed smoothly with both brakes
+⬇️ Look ahead and let the bike move beneath you
 
-Up or down — stay balanced, relax your grip, and keep breathing.
+Light hands, heavy feet — and stay in control.
