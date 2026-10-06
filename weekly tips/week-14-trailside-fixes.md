@@ -8,13 +8,12 @@
 
 Tip of the Week: A dropped chain isn't the end of your ride. 🔧
 
-Little mechanical hiccups happen to everyone. Knowing a couple quick fixes keeps you rolling.
+Small fixes start with a little preparation.
 
 Good to know:
-🔗 Dropped chain? Stop and move safely off the trail, away from other riders
-🔗 Put it back on only if you know how, then check that the bike works before riding
-💨 Check and add air before every ride
-🔧 Carry (or know who's carrying) a multi-tool for the group
-🙋 When in doubt, wave down a coach or race official and follow their instructions
+🔗 Dropped chain? Clear the trail; reset it only if you know how
+💨 Check air, brakes, chain, derailleur, and everything else before riding
+🔧 Carry tools and spares for your bike
+🙋 Bike unsafe? Don't ride it; ask your coach
 
-Bonus: If it's really broken, it's ALWAYS okay to walk it out safely.
+WI NICA races: Outside repair help can mean a penalty. Ask a race official.
